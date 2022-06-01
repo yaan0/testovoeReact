@@ -1,0 +1,45 @@
+.Card {
+  position: relative;
+
+  width: 360px;
+  height: 275px;
+
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.CardImg {
+  width: 360px;
+  height: 275px;
+  border-radius: 20px;
+}
+
+.CardText {
+  position: absolute;
+  bottom: 0;
+  width: 360px;
+  max-height: 145px;
+  /* height: 30px; */
+
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.75);
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  border-radius: 0 0 20px 20px;
+
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.CardText.Active {
+  height: 145px;
+  transition: height 4s;
+}
+
+.CardParagraph {
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 20px;
+}

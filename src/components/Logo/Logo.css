@@ -1,0 +1,6 @@
+.Logo {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 35px;
+}
