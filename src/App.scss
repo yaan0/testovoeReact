@@ -12,11 +12,44 @@
   margin: 0 auto;
 }
 
+@media (max-width: 1120px) {
+  .Container {
+    max-width: 970px;
+  }
+}
+
+@media (max-width: 992px) {
+  .Container {
+    max-width: 750px;
+  }
+}
+
+// @media (max-width: 767px) {
+//   .Container {
+//     max-width: 730px;
+//   }
+// }
+
+// @media (max-width: 730px) {
+//   .Container {
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// }
+
 .Pagination {
   display: flex;
   width: fit-content;
 
   margin-bottom: 97px;
+}
+
+@media (max-width: 730px) {
+  .Pagination {
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
 }
 
 .PaginationPage {

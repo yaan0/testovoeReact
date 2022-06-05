@@ -18,10 +18,14 @@ function App() {
   const [filterByPaintingName, setFilterByPaintingName] = useState("");
   const [filterByPaintingYear, setFilterByPaintingYear] = useState("");
   const [filterByMaxYear, setFilterByMaxYear] = useState("");
+  const [storageOfPaintings, setStorageOfPaintings] = useState();
+  // const [isLoading, setIsLoading] = useState();
+
+  const LIMIT = 12;
 
   useEffect(() => {
     let paintingsApiUrl =
-      "https://test-front.framework.team/paintings?_limit=12";
+      "https://test-front.framework.team/paintings?_limit=" + LIMIT;
 
     if (authorsFilter !== null) {
       paintingsApiUrl = paintingsApiUrl + "&authorId=" + authorsFilter;
@@ -45,7 +49,12 @@ function App() {
     }
 
     fetch(paintingsApiUrl + "&_page=" + currentPage)
-      .then((response) => response.json())
+      .then((response) => {
+        const totalPaintingsCount = response.headers.get("x-total-count");
+        setStorageOfPaintings(totalPaintingsCount);
+        return response.json();
+      })
+
       .then((data) => {
         setPaintings(data);
       })
@@ -109,7 +118,7 @@ function App() {
         />
 
         <Pagination
-          pagesAmount={30}
+          pagesAmount={Math.ceil(storageOfPaintings / LIMIT)}
           onChange={(newPage) => {
             setCurrentPage(newPage);
           }}

@@ -12,6 +12,14 @@
   margin-top: 35px;
 }
 
+@media (max-width: 730px) {
+  .NavItem {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .Input {
   width: 265px;
   height: 45px;
@@ -28,6 +36,29 @@
   &--dark {
     color: white;
     border: 1px solid white;
+  }
+}
+
+@media (max-width: 1120px) {
+  .Input {
+    width: 220px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 994px) {
+  .Input {
+    width: 160px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Input {
+    width: 280px;
+    height: 45px;
+
+    margin-bottom: 15px;
   }
 }
 
@@ -316,6 +347,29 @@
   -ms-overflow-style: none;
 }
 
+@media (max-width: 1120px) {
+  .Select {
+    width: 220px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 994px) {
+  .Select {
+    width: 160px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Select {
+    width: 280px;
+    height: 45px;
+
+    margin-bottom: 15px;
+  }
+}
+
 /// RANGE ///////
 
 .Range {
@@ -375,6 +429,27 @@
       border-top: none;
       display: flex;
     }
+  }
+}
+
+@media (max-width: 1120px) {
+  .Range {
+    width: 220px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 994px) {
+  .Range {
+    width: 160px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Range {
+    width: 280px;
+    height: 45px;
   }
 }
 

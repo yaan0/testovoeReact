@@ -1,6 +1,6 @@
 import { useImage } from "react-image";
 
-import "./Card.css";
+import "./Card.scss";
 
 const Card = ({ imageUrl, name, activeCard, author, created, location }) => {
   const { src } = useImage({
