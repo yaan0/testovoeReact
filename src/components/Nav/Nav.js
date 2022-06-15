@@ -12,6 +12,7 @@ const Nav = ({
   setFilterByMaxYear,
   currentAuthor,
   currentFilter,
+  isDarkTheme,
 }) => {
   let currentAuthorName = authors.find((author) => {
     return currentAuthor === author.id;
@@ -22,6 +23,7 @@ const Nav = ({
   let currentLocationName = locations.find((location) => {
     return currentFilter === location.id;
   });
+
   currentLocationName =
     currentLocationName === undefined
       ? "Location"
@@ -31,6 +33,8 @@ const Nav = ({
     <div className="NavContainer">
       <div className="NavItem">
         <Input
+          placeholder="Name"
+          isDarkTheme={isDarkTheme}
           onChange={(event) => {
             onPaintingNameFilterChange(event.target.value);
             // console.log(event, event.target.value);
@@ -38,6 +42,7 @@ const Nav = ({
         />
 
         <Select
+          isDarkTheme={isDarkTheme}
           value={currentAuthorName}
           onChange={(authorName) => {
             const author = authors.find((author) => {
@@ -49,6 +54,7 @@ const Nav = ({
         ></Select>
 
         <Select
+          isDarkTheme={isDarkTheme}
           value={currentLocationName}
           onChange={(locationName) => {
             const location = locations.find((location) => {
@@ -64,16 +70,18 @@ const Nav = ({
           })}
         ></Select>
 
-        <Range>
+        <Range isDarkTheme={isDarkTheme}>
           <Input
+            placeholder="from"
             type="number"
             className="RangeInput"
             onChange={(event) => {
               setFilterByPaintingYear(event.target.value);
             }}
           />
-          <span className="RangeSpan" />
+          <span className={`RangeSpan ${isDarkTheme ? "Dark" : "Light"}`} />
           <Input
+            placeholder="before"
             type="number"
             className="RangeInput"
             onChange={(event) => {

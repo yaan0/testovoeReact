@@ -370,6 +370,24 @@
   }
 }
 
+@media (max-width: 1120px) {
+  .Select__title {
+    width: 170px;
+  }
+}
+
+@media (max-width: 994px) {
+  .Select__title {
+    width: 110px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Select__title {
+    width: 220px;
+  }
+}
+
 /// RANGE ///////
 
 .Range {
@@ -409,7 +427,7 @@
   &__сontainer {
     display: block;
     position: absolute;
-    justify-content: center;
+    justify-content: space-between; // center
     align-items: center;
     align-self: center;
     width: inherit;
@@ -464,5 +482,25 @@
 
 .RangeSpan {
   width: 12px;
+  border: 1px solid #000000;
+}
+
+.RangeSpan.Dark {
+  width: 12px;
   border: 1px solid #ffffff;
+}
+
+@media (max-width: 1120px) {
+  .Range__сontainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 730px) {
+  .Range__сontainer {
+    display: flex;
+    flex-direction: initial;
+  }
 }

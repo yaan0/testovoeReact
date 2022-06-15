@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Pagination } from "fwt-internship-uikit";
 
-import Logo from "./components/Logo/Logo";
+import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import CardList from "./components/CardList/CardList";
+import Spinner from "./components/Spinner/Spinner";
 
 import "./App.scss";
 
@@ -19,7 +20,8 @@ function App() {
   const [filterByPaintingYear, setFilterByPaintingYear] = useState("");
   const [filterByMaxYear, setFilterByMaxYear] = useState("");
   const [storageOfPaintings, setStorageOfPaintings] = useState();
-  // const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const LIMIT = 12;
 
@@ -48,6 +50,8 @@ function App() {
       paintingsApiUrl = paintingsApiUrl + "&created_lte=" + filterByMaxYear;
     }
 
+    setIsLoading(true);
+
     fetch(paintingsApiUrl + "&_page=" + currentPage)
       .then((response) => {
         const totalPaintingsCount = response.headers.get("x-total-count");
@@ -57,8 +61,10 @@ function App() {
 
       .then((data) => {
         setPaintings(data);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         alert(error);
       });
   }, [
@@ -92,14 +98,22 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.querySelector("body").classList.add("Dark");
+    } else {
+      document.querySelector("body").classList.remove("Dark");
+    }
+  }, [isDarkTheme]);
+
   return (
-    <div className="App">
+    <div className={`App ${isDarkTheme ? "Dark" : "Light"}`}>
       <div className="Container">
         <header className="AppHeader">
-          <Logo />
+          <Header setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
         </header>
-
         <Nav
+          isDarkTheme={isDarkTheme}
           setFilterByMaxYear={setFilterByMaxYear}
           setFilterByPaintingYear={setFilterByPaintingYear}
           onPaintingNameFilterChange={setFilterByPaintingName}
@@ -111,13 +125,17 @@ function App() {
           setLocationsFilter={setLocationsFilter}
         />
 
-        <CardList
-          paintings={paintings}
-          authors={authors}
-          locations={locations}
-        />
-
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <CardList
+            paintings={paintings}
+            authors={authors}
+            locations={locations}
+          />
+        )}
         <Pagination
+          isDarkTheme={isDarkTheme}
           pagesAmount={Math.ceil(storageOfPaintings / LIMIT)}
           onChange={(newPage) => {
             setCurrentPage(newPage);

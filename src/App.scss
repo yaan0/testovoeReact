@@ -6,6 +6,10 @@
   /* text-align: center; */
 }
 
+.App.Dark {
+  background-color: #000000;
+}
+
 .Container {
   max-width: 1120px;
   width: 100%;
@@ -37,6 +41,8 @@
 //     align-items: center;
 //   }
 // }
+
+/////////////////////////////////////
 
 .Pagination {
   display: flex;

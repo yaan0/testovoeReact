@@ -10,27 +10,23 @@ const CardList = ({ paintings, authors, locations }) => {
       <div className="CardList">
         {paintings.map((painting) => {
           return (
-            <div
+            <Card
               key={painting.id}
+              name={painting.name}
+              imageUrl={painting.imageUrl}
+              activeCard={painting.id === activeCard}
+              author={
+                authors.find((author) => painting.authorId === author.id)?.name
+              }
+              created={painting.created}
+              location={
+                locations.find(
+                  (location) => painting.locationId === location.id
+                )?.location
+              }
               onMouseEnter={() => setActiveCard(painting.id)}
               onMouseLeave={() => setActiveCard(null)}
-            >
-              <Card
-                name={painting.name}
-                imageUrl={painting.imageUrl}
-                activeCard={painting.id === activeCard}
-                author={
-                  authors.find((author) => painting.authorId === author.id)
-                    ?.name
-                }
-                created={painting.created}
-                location={
-                  locations.find(
-                    (location) => painting.locationId === location.id
-                  )?.location
-                }
-              />
-            </div>
+            />
           );
         })}
       </div>
